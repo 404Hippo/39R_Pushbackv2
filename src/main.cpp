@@ -59,12 +59,12 @@ void opcontrol() {
         }
 
         // Middle Descore Control
-        if (controller.get_digital_new_press(DIGITAL_RIGHT)) {
+        if (controller.get_digital_new_press(DIGITAL_A)) {
             middle.toggle();
         }
 
         // Matchloader Control
-        if(controller.get_digital_new_press(DIGITAL_A)) {
+        if(controller.get_digital_new_press(DIGITAL_RIGHT)) {
             matchloader.toggle();
         }
 

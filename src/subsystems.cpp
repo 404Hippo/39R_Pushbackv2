@@ -9,13 +9,25 @@ pros::Motor stage2(-10, pros::v5::MotorGears::green);
 pros::Motor stage3(-9, pros::v5::MotorGears::green);
 
 // Intake Stop (In Progress)
-double blockDistance;
+double blockDistance; // in inches
+double blockTime; // in milliseconds
 
 void checkBlock() {
-        blockDistance = (intakestop.get_distance()/25.4);
-        if (blockDistance < 2) {
-            stage2.move(0);
-        }
+        blockDistance = (intakestop.get_distance()/25.4); // convert from mm to inches
+            // If the distance is less than 2 inches, start counting time. If the distance is greater than 2 inches, reset time. If the time is greater than 100 milliseconds, stop the intake.
+            if (blockDistance < 2) {
+                blockTime += 10;
+                pros::delay(10);
+            }
+            else {
+                blockTime = 0;
+            }
+            if (blockTime > 100) {
+                stage2.move(0);
+            }
+            else {
+                stage2.move(intakePower);
+            }
 }
 
 // Intake
@@ -24,6 +36,7 @@ bool isLevelUp = false;
 
 void setIntake(int intakePower){
     if (Score) {
+        checkBlockActive = false;
         stage1.move(intakePower);
         stage2.move(intakePower);
         stage3.move(intakePower);
@@ -35,6 +48,7 @@ void setIntake(int intakePower){
         }
     }
     else {
+        checkBlockActive = true;
         stage1.move(intakePower);
         stage2.move(intakePower);
         stage3.move(10);

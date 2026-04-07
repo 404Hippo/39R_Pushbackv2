@@ -13,7 +13,17 @@ void initialize() {
         }
     });
 
+    pros::Task checkBlockTask([]{
+        while (true) {
+            checkBlock();
+            pros::delay(10);
+        }
+    })
+
+    checkBlockTask.suspend(); // start suspended, will be resumed when intake is activated
+
 }
+
 void disabled() {}
 
 void competition_initialize() {}

@@ -10,24 +10,27 @@ pros::Motor stage3(-9, pros::v5::MotorGears::green);
 
 // Intake Stop (In Progress)
 double blockDistance; // in inches
-double blockTime; // in milliseconds
+int blockTime; // in milliseconds
+bool checkBlockActive = false;
+bool isBlocked = false;
 
 void checkBlock() {
+    if (checkBlockActive) {
         blockDistance = (intakestop.get_distance()/25.4); // convert from mm to inches
             // If the distance is less than 2 inches, start counting time. If the distance is greater than 2 inches, reset time. If the time is greater than 100 milliseconds, stop the intake.
             if (blockDistance < 2) {
                 blockTime += 10;
-                pros::delay(10);
             }
             else {
                 blockTime = 0;
             }
-            if (blockTime > 100) {
-                stage2.move(0);
-            }
-            else {
-                stage2.move(intakePower);
-            }
+
+            isBlocked = (blockzTime > 100);
+        }
+    else {
+        blockTime = 0;
+        isBlocked = false;
+    }
 }
 
 // Intake
@@ -50,7 +53,12 @@ void setIntake(int intakePower){
     else {
         checkBlockActive = true;
         stage1.move(intakePower);
-        stage2.move(intakePower);
+        if (isBlocked) {
+            stage2.move(0);
+        }
+        else {
+            stage2.move(intakePower);
+        }
         stage3.move(10);
         hood.retract();
     }

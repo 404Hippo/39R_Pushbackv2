@@ -18,9 +18,7 @@ void initialize() {
             checkBlock();
             pros::delay(10);
         }
-    })
-
-    checkBlockTask.suspend(); // start suspended, will be resumed when intake is activated
+    });
 
 }
 

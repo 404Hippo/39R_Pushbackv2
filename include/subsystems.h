@@ -6,9 +6,13 @@ extern pros::Motor stage2;
 extern pros::Motor stage3;
 
 extern double blockDistance;
+extern int blockTime;
+extern bool checkBlockActive;
+extern bool isBlocked;
 extern void checkBlock();
 
 extern bool Score;
+extern bool isLevelUp;
 extern void setIntake(int intakePower);
 
 extern pros::adi::Pneumatics matchloader;

@@ -5,15 +5,15 @@ LemLib robot configuration of drivetrain, sensors, autonomous, and drive curve s
 */
 
 // Drivetrain Motor Groups
-pros::MotorGroup leftMotors({-19, 6, -5}, pros::MotorGearset::blue); // left motor group
-pros::MotorGroup rightMotors({18, -7, 9}, pros::MotorGearset::blue); // right motor group
+pros::MotorGroup leftMotors({-12, 11, -14}, pros::MotorGearset::blue); // left motor group
+pros::MotorGroup rightMotors({15, -13, 16}, pros::MotorGearset::blue); // right motor group
 
-pros::Imu imu(12);
+pros::Imu imu(21); // inertial sensor
 
 // Tracking Sensors
-pros::Rotation verticalEnc(-1);
+pros::Rotation verticalEnc(1);
 
-lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_275, 0.8);
+lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_275, 0.5);
 
 // Drivetrain Settingsc
 lemlib::Drivetrain drivetrain(&leftMotors,
@@ -89,10 +89,8 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // Distance Reset
 double leftvalue;
 double rightvalue;
-double frontvalue;
 
 void updateDistanceValues() {
-        leftvalue = 72 - ((leftdistance.get_distance()/25.4) + 5.25);
-        rightvalue = 72 - ((rightdistance.get_distance()/25.4) + 5.25);
-        frontvalue = 72 - ((frontdistance.get_distance()/25.4) + 7);
+        leftvalue = 72 - ((leftdistance.get_distance()/25.4) + 4.5);
+        rightvalue = 72 - ((rightdistance.get_distance()/25.4) + 4.5);
 }

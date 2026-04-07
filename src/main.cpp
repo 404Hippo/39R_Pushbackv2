@@ -31,15 +31,43 @@ void opcontrol() {
         leftMotors.move(computeY(leftY, driveConst));
         rightMotors.move(computeY(rightY, driveConst));
 
+        // Intake Control
         setIntake((controller.get_digital(DIGITAL_R1) - controller.get_digital(DIGITAL_R2)) * 127);
 
+        // Score Control
         if (controller.get_digital(DIGITAL_L2)) {
             Score = true;
         } 
-        else{
+        else {
             Score = false;
         }
 
-        pros::delay(10);
+        // Wing Control
+        if (controller.get_digital_new_press(DIGITAL_Y)) {
+            wing.toggle();
+        }
+
+        // High Mid Cycle Control
+        if (controller.get_digital_new_press(DIGITAL_L1)) {
+            level.toggle();
+            if (isLevelUp) {
+                isLevelUp = false;
+            }
+            else {
+                isLevelUp = true;
+            }
+        }
+
+        // Middle Descore Control
+        if (controller.get_digital_new_press(DIGITAL_RIGHT)) {
+            middle.toggle();
+        }
+
+        // Matchloader Control
+        if(controller.get_digital_new_press(DIGITAL_A)) {
+            matchloader.toggle();
+        }
+
+        pros::delay(10); // delay to save resources
 	}
 }

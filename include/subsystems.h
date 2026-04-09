@@ -1,5 +1,5 @@
 #pragma once
-#include "main.h"
+#include "api.h"
 
 extern pros::Motor stage1;
 extern pros::Motor stage2;
@@ -13,6 +13,7 @@ extern void checkBlock();
 
 extern bool Score;
 extern bool isLevelUp;
+extern int Intake;
 extern void setIntake(int intakePower);
 
 extern pros::adi::Pneumatics matchloader;

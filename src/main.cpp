@@ -20,6 +20,13 @@ void initialize() {
         }
     });
 
+    pros::Task intakeTask([]{
+        while (true) {
+            setIntake(Intake);
+            pros::delay(10);
+        }
+    });
+
 }
 
 void disabled() {}
@@ -27,7 +34,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-
+    soloAWP();
 }
 
 void opcontrol() {
@@ -40,7 +47,7 @@ void opcontrol() {
         rightMotors.move(computeY(rightY, driveConst));
 
         // Intake Control
-        setIntake((controller.get_digital(DIGITAL_R1) - controller.get_digital(DIGITAL_R2)) * 127);
+        Intake = (controller.get_digital(DIGITAL_R1) - controller.get_digital(DIGITAL_R2)) * 12000;
 
         // Score Control
         if (controller.get_digital(DIGITAL_L2)) {
@@ -58,21 +65,16 @@ void opcontrol() {
         // High Mid Cycle Control
         if (controller.get_digital_new_press(DIGITAL_L1)) {
             level.toggle();
-            if (isLevelUp) {
-                isLevelUp = false;
-            }
-            else {
-                isLevelUp = true;
-            }
+            isLevelUp = !isLevelUp;
         }
 
         // Middle Descore Control
-        if (controller.get_digital_new_press(DIGITAL_A)) {
+        if (controller.get_digital_new_press(DIGITAL_RIGHT)) {
             middle.toggle();
         }
 
         // Matchloader Control
-        if(controller.get_digital_new_press(DIGITAL_RIGHT)) {
+        if(controller.get_digital_new_press(DIGITAL_A)) {
             matchloader.toggle();
         }
 

@@ -1,5 +1,6 @@
 #pragma once
-#include "main.h"
+#include "api.h"
+#include "lemlib/api.hpp"
 
 extern double computeY(double x, double t);
 
@@ -18,6 +19,5 @@ extern double driveConst;
 
 extern double leftValue;
 extern double rightValue;
-extern double frontValue;
 
 extern void updateDistanceValues();

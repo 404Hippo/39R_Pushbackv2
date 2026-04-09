@@ -39,6 +39,7 @@
 #include "lemlib/api.hpp"
 #include "robotconfig.h"
 #include "subsystems.h"
+#include "autons.h"
 
 
 /**

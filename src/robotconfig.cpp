@@ -15,7 +15,7 @@ pros::Rotation verticalEnc(1);
 
 lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_275, 0.5);
 
-// Drivetrain Settingsc
+// Drivetrain Settings
 lemlib::Drivetrain drivetrain(&leftMotors,
                               &rightMotors,
                               10.25,
@@ -87,10 +87,10 @@ double computeY(double x, double t){
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // Distance Reset
-double leftvalue;
-double rightvalue;
+double leftValue;
+double rightValue;
 
 void updateDistanceValues() {
-        leftvalue = 72 - ((leftdistance.get_distance()/25.4) + 4.5);
-        rightvalue = 72 - ((rightdistance.get_distance()/25.4) + 4.5);
+        leftValue = 72 - ((leftdistance.get_distance()/25.4) + 4.5);
+        rightValue = 72 - ((rightdistance.get_distance()/25.4) + 4.5);
 }

@@ -25,7 +25,7 @@ void checkBlock() {
                 blockTime = 0;
             }
 
-            isBlocked = (blockzTime > 100);
+            isBlocked = (blockTime > 100);
         }
     else {
         blockTime = 0;
@@ -36,13 +36,14 @@ void checkBlock() {
 // Intake
 bool Score = false;
 bool isLevelUp = false;
+int Intake = 0;
 
 void setIntake(int intakePower){
     if (Score) {
         checkBlockActive = false;
-        stage1.move(intakePower);
-        stage2.move(intakePower);
-        stage3.move(intakePower);
+        stage1.move_voltage(intakePower);
+        stage2.move_voltage(intakePower);
+        stage3.move_voltage(intakePower);
         if (isLevelUp) {
             hood.extend();
         }
@@ -52,14 +53,14 @@ void setIntake(int intakePower){
     }
     else {
         checkBlockActive = true;
-        stage1.move(intakePower);
+        stage1.move_voltage(intakePower);
         if (isBlocked) {
-            stage2.move(0);
+            stage2.move_voltage(0);
         }
         else {
-            stage2.move(intakePower);
+            stage2.move_voltage(intakePower);
         }
-        stage3.move(10);
+        stage3.move_voltage(1000);
         hood.retract();
     }
 }

@@ -22,7 +22,7 @@ void initialize() {
 
     pros::Task intakeTask([]{
         while (true) {
-            setIntake(Intake);
+            setIntake(Intake); 
             pros::delay(10);
         }
     });
@@ -34,7 +34,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-    soloAWP();
+    rightCounterSplit();
 }
 
 void opcontrol() {

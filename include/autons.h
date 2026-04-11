@@ -10,3 +10,4 @@ extern void rightRush();
 extern void leftCounterSplit();
 extern void rightCounterSplit();
 extern void skills();
+extern void test();

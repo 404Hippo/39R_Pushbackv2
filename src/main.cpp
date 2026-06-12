@@ -34,7 +34,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-    rightCounterSplit();
+    leftSplit();
 }
 
 void opcontrol() {
